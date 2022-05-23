@@ -28,7 +28,7 @@ COPY Pipfile /app
 COPY Pipfile.lock /app
 
 RUN pip --no-cache-dir install pipenv \
-    && pipenv install --system --deploy \
+    && pipenv install --system --deploy --skip-lock \
     && rm -rf /root/.cache
 
 
@@ -40,7 +40,7 @@ FROM base-release as base-test
 WORKDIR /app
 
 # Install dev dependencies
-RUN pipenv install --system --deploy --dev
+RUN pipenv install --system --deploy --dev --skip-lock
 
 
 #################
